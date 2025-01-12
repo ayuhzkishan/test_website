@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #CCCCFF;
+  --color-secondary: #A3A3CC;
+  --color-accent: #5C5C99;
+  --color-dark: #292966;
+  --color-deepdark: #0B2E33;
+}
+
+body {
+  @apply bg-gray-950;
+  color-scheme: dark;
+  background: linear-gradient(135deg, var(--color-deepdark) 0%, #1a1a3a 50%, var(--color-dark) 100%);
+}
+
+/* Custom gradient backgrounds */
+.hero-gradient {
+  background: linear-gradient(135deg, var(--color-deepdark) 0%, var(--color-dark) 50%, var(--color-accent) 100%);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(204, 204, 255, 0.05) 0%, rgba(163, 163, 204, 0.03) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(204, 204, 255, 0.1);
+}
+
+.section-gradient-1 {
+  background: linear-gradient(135deg, var(--color-deepdark) 0%, var(--color-dark) 100%);
+}
+
+.section-gradient-2 {
+  background: linear-gradient(135deg, #0B2E33 0%, #1a1a3a 100%);
+}
+
+/* Custom animations */
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(204, 204, 255, 0.1); }
+  50% { box-shadow: 0 0 20px rgba(204, 204, 255, 0.2); }
+  100% { box-shadow: 0 0 5px rgba(204, 204, 255, 0.1); }
+}
+
+.hover-glow:hover {
+  animation: glow 2s infinite;
+}
