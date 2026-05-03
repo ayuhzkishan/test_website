@@ -2,11 +2,29 @@ import React, { useEffect, useState } from 'react';
 
 const mono: React.CSSProperties = { fontFamily: 'JetBrains Mono, monospace' };
 
+/* User Agent Parser */
+function parseUA(ua: string) {
+  let os = 'UNKNOWN OS';
+  if (ua.includes('Win')) os = 'WINDOWS';
+  else if (ua.includes('Mac')) os = 'MACOS';
+  else if (ua.includes('Linux')) os = 'LINUX';
+  else if (ua.includes('Android')) os = 'ANDROID';
+  else if (ua.includes('iPhone') || ua.includes('iPad')) os = 'IOS';
+
+  let browser = 'UNKNOWN BROWSER';
+  if (ua.includes('Chrome')) browser = 'CHROME';
+  else if (ua.includes('Firefox')) browser = 'FIREFOX';
+  else if (ua.includes('Safari')) browser = 'SAFARI';
+  else if (ua.includes('Edge')) browser = 'EDGE';
+
+  return { os, browser };
+}
+
 /* Live diagnostics hook */
 function useDiagnostics() {
   const [diag, setDiag] = useState({
-    platform: 'detecting...',
-    network: 'unknown',
+    platform: 'DETECTING...',
+    network: 'UNKNOWN',
     cores: '—',
     viewport: '—',
     screen: '—',
@@ -14,14 +32,14 @@ function useDiagnostics() {
     pixelRatio: '—',
     timezone: '—',
     host: '—',
-    cookies: 'disabled',
-    java: 'disabled',
-    webgl: 'detecting',
+    cookies: 'DISABLED',
+    java: 'DISABLED',
+    webgl: 'DETECTING',
     battery: '—',
-    geolocation: 'unknown',
-    localStorage: 'unknown',
-    sessionStorage: 'unknown',
-    indexedDB: 'unknown',
+    geolocation: 'UNKNOWN',
+    localStorage: 'UNKNOWN',
+    sessionStorage: 'UNKNOWN',
+    indexedDB: 'UNKNOWN',
     userAgent: '—',
     memory: '—',
     uptime: '—',
@@ -30,13 +48,14 @@ function useDiagnostics() {
   useEffect(() => {
     const nav = navigator as any;
     const win = window as any;
+    const uaInfo = parseUA(nav.userAgent);
 
     // WebGL renderer
-    let webglInfo = 'disabled';
+    let webglInfo = 'DISABLED';
     try {
       const canvas = document.createElement('canvas');
       const gl = canvas.getContext('webgl');
-      if (gl) webglInfo = 'enabled';
+      if (gl) webglInfo = 'ENABLED';
     } catch (_) {}
 
     // Battery
@@ -57,25 +76,25 @@ function useDiagnostics() {
     }, 1000);
 
     setDiag({
-      platform: (nav.platform || nav.userAgentData?.platform || 'unknown').replace(/Win32/, 'Win32').toUpperCase(),
-      network: (nav.connection?.effectiveType || 'unknown').toUpperCase(),
+      platform: `${uaInfo.browser} / ${uaInfo.os}`,
+      network: (nav.connection?.effectiveType || 'UNKNOWN').toUpperCase(),
       cores: String(nav.hardwareConcurrency || '—'),
       viewport: `${window.innerWidth}×${window.innerHeight}`,
       screen: `${window.screen.width}×${window.screen.height}`,
       colorDepth: `${window.screen.colorDepth}BIT`,
       pixelRatio: String(window.devicePixelRatio),
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-      host: window.location.hostname || 'localhost',
-      cookies: nav.cookieEnabled ? 'enabled' : 'disabled',
-      java: 'disabled',
+      host: window.location.hostname || 'LOCALHOST',
+      cookies: nav.cookieEnabled ? 'ENABLED' : 'DISABLED',
+      java: 'DISABLED',
       webgl: webglInfo,
       battery: '—',
-      geolocation: 'geolocation' in nav ? 'available' : 'unavailable',
-      localStorage: (() => { try { localStorage.setItem('t', '1'); localStorage.removeItem('t'); return 'available'; } catch { return 'unavailable'; } })(),
-      sessionStorage: (() => { try { sessionStorage.setItem('t', '1'); sessionStorage.removeItem('t'); return 'available'; } catch { return 'unavailable'; } })(),
-      indexedDB: 'indexedDB' in win ? 'available' : 'unavailable',
-      userAgent: nav.userAgent.substring(0, 80) + '...',
-      memory: nav.deviceMemory ? `${nav.deviceMemory * 1024}MB` : 'unknown',
+      geolocation: 'geolocation' in nav ? 'AVAILABLE' : 'UNAVAILABLE',
+      localStorage: (() => { try { localStorage.setItem('t', '1'); localStorage.removeItem('t'); return 'AVAILABLE'; } catch { return 'UNAVAILABLE'; } })(),
+      sessionStorage: (() => { try { sessionStorage.setItem('t', '1'); sessionStorage.removeItem('t'); return 'AVAILABLE'; } catch { return 'UNAVAILABLE'; } })(),
+      indexedDB: 'indexedDB' in win ? 'AVAILABLE' : 'UNAVAILABLE',
+      userAgent: nav.userAgent,
+      memory: nav.deviceMemory ? `${nav.deviceMemory * 1024}MB` : 'UNKNOWN',
       uptime: '00:00:00',
     });
 
