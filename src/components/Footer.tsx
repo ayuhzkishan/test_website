@@ -144,7 +144,7 @@ const TICKER_TEXT = 'AK · AYUSH KISHAN · PoC || GTFO · SEC ENGINEERING · CLO
 
 function DiagRow({ label, value, label2, value2 }: { label: string; value: string; label2?: string; value2?: string }) {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr 100px 1fr', gap: '4px 8px', marginBottom: 5 }}>
+    <div className="diag-row" style={{ gap: '4px 8px', marginBottom: 5 }}>
       <span style={{ ...mono, fontSize: '0.55rem', color: '#4a3a35', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label}</span>
       <span style={{ ...mono, fontSize: '0.55rem', color: '#7a6a60', letterSpacing: '0.04em' }}>{value}</span>
       {label2 && <span style={{ ...mono, fontSize: '0.55rem', color: '#4a3a35', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label2}</span>}
@@ -294,6 +294,10 @@ export default function Footer() {
       </div>
 
       <style>{`
+        .diag-row {
+          display: grid;
+          grid-template-columns: 120px 1fr 100px 1fr;
+        }
         @keyframes footer-ticker {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
@@ -301,9 +305,11 @@ export default function Footer() {
         @media (max-width: 900px) {
           .footer-main-grid { grid-template-columns: 1fr !important; }
           .footer-nav-grid  { grid-template-columns: 1fr 1fr !important; }
+          .diag-row { grid-template-columns: 1fr 1fr !important; }
         }
         @media (max-width: 600px) {
           .footer-nav-grid  { grid-template-columns: 1fr !important; }
+          .diag-row { grid-template-columns: 120px 1fr !important; }
         }
       `}</style>
     </footer>

@@ -113,29 +113,36 @@ export default function Header() {
         {/* Mobile menu */}
         {open && (
           <div style={{
-            background: '#060303',
-            borderTop: '1px solid rgba(253,251,247,0.07)',
+            position: 'absolute',
+            top: '54px', /* height of the navbar */
+            left: 0,
+            width: '100%',
+            background: 'rgba(6,3,3,0.95)',
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
+            borderBottom: '1px solid rgba(253,251,247,0.07)',
             padding: '16px 28px',
             display: 'flex',
             flexDirection: 'column',
             gap: 12,
+            boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
           }}>
             {NAV.map(n => (
               <a
                 key={n.href}
                 href={n.href}
                 onClick={() => setOpen(false)}
-                style={{ ...mono, fontSize: '0.75rem', color: '#52525b', padding: '6px 0', cursor: 'none' }}
+                style={{ ...mono, fontSize: '0.75rem', color: '#a39185', padding: '8px 0', cursor: 'none', borderBottom: '1px solid rgba(253,251,247,0.05)' }}
               >
                 {n.label}
               </a>
             ))}
             {/* Clock in mobile too */}
-            <div style={{ ...mono, fontSize: '0.62rem', color: '#3f3f46', paddingTop: 8, lineHeight: 1.8 }}>
+            <div style={{ ...mono, fontSize: '0.62rem', color: '#5a4a45', paddingTop: 8, lineHeight: 1.8 }}>
               <div>UTC: {meta.utc} · LOCAL: {meta.local}</div>
               <div>UNIX: {meta.unix}</div>
             </div>
-            <div style={{ paddingTop: 8 }}>
+            <div style={{ paddingTop: 8, paddingBottom: 16 }}>
               <a href="#contact" className="btn btn-primary" onClick={() => setOpen(false)}>Hire Me ↗</a>
             </div>
           </div>
