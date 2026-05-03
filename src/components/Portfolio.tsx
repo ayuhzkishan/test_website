@@ -1,113 +1,106 @@
 import React from 'react';
-import { ExternalLink, Github } from 'lucide-react';
+import TopoBackground from './TopoBackground';
 
-const Portfolio = () => {
-  const projects = [
-    {
-      title: 'SecureChat Messenger',
-      category: 'Android Development',
-      description: 'End-to-end encrypted messaging app with modern Material You design',
-      image: 'https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&w=800&q=80',
-      tags: ['Kotlin', 'Jetpack Compose', 'End-to-End Encryption'],
-      links: {
-        live: '#',
-        github: '#'
-      }
-    },
-    {
-      title: 'Cloud Infrastructure Automation',
-      category: 'DevOps',
-      description: 'Infrastructure as Code solution for scalable cloud deployments',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-      tags: ['Terraform', 'AWS', 'Docker'],
-      links: {
-        live: '#',
-        github: '#'
-      }
-    },
-    {
-      title: 'Security Audit Dashboard',
-      category: 'Cybersecurity',
-      description: 'Real-time security monitoring and threat detection platform',
-      image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=800&q=80',
-      tags: ['Python', 'React', 'Machine Learning'],
-      links: {
-        live: '#',
-        github: '#'
-      }
-    },
-    {
-      title: 'DevSecOps Pipeline',
-      category: 'DevOps & Security',
-      description: 'Automated security testing integration for CI/CD pipelines',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
-      tags: ['Jenkins', 'OWASP', 'GitLab'],
-      links: {
-        live: '#',
-        github: '#'
-      }
-    }
-  ];
+const PROJECTS = [
+  {
+    id: 'PROJ-001',
+    category: 'Android · Security',
+    title: 'SecureChat Messenger',
+    desc: 'End-to-end encrypted messaging with Material You design. Zero-knowledge architecture, Kotlin + Jetpack Compose.',
+    tags: ['Kotlin', 'Jetpack Compose', 'E2E Encryption', 'Firebase'],
+    img: 'https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&w=800&q=80',
+    github: '#', live: '#',
+  },
+  {
+    id: 'PROJ-002',
+    category: 'DevOps · Cloud',
+    title: 'Cloud Infra Automation',
+    desc: 'Infrastructure-as-Code framework for scalable AWS deployments. Automates provisioning, monitoring, and rollback.',
+    tags: ['Terraform', 'AWS', 'Docker', 'GitHub Actions'],
+    img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+    github: '#', live: '#',
+  },
+  {
+    id: 'PROJ-003',
+    category: 'Cybersecurity · Python',
+    title: 'Security Audit Dashboard',
+    desc: 'Real-time threat detection platform. Aggregates vulnerability feeds, tracks CVSS scores, auto-generates reports.',
+    tags: ['Python', 'React', 'Machine Learning', 'OWASP'],
+    img: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=800&q=80',
+    github: '#', live: '#',
+  },
+  {
+    id: 'PROJ-004',
+    category: 'DevOps · Security',
+    title: 'DevSecOps Pipeline',
+    desc: 'Security-first CI/CD integrating SAST, DAST, and dependency scanning before every deployment.',
+    tags: ['Jenkins', 'OWASP ZAP', 'GitLab', 'Docker'],
+    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
+    github: '#', live: '#',
+  },
+];
 
+const mono: React.CSSProperties = { fontFamily: 'JetBrains Mono, monospace' };
+
+export default function Portfolio() {
   return (
-    <section id="portfolio" className="py-20 bg-gray-800">
-      <div className="container mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-16">Featured Projects</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="group relative bg-gray-900 rounded-xl overflow-hidden border border-gray-700 transition-transform hover:-translate-y-2"
-            >
-              <div className="relative h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent" />
+    <div id="portfolio" className="section-wrap" style={{ position: 'relative' }}>
+      <TopoBackground variant="top-left" />
+      <div className="section" style={{ position: 'relative', zIndex: 1 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 56, flexWrap: 'wrap', gap: 20 }}>
+          <div>
+            <span className="section-label">Featured Projects</span>
+            <h2 className="section-title" style={{ margin: 0 }}>
+              Real code.<br />Real impact.
+            </h2>
+          </div>
+          <a href="#contact" className="btn btn-outline" style={{ cursor: 'none', fontSize: '0.7rem' }}>View All ↗</a>
+        </div>
+
+        {/* 2×2 grid with 1px gap lines (Hacktron bento style) */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1, background: 'rgba(255,255,255,0.06)' }} className="proj-grid">
+          {PROJECTS.map(p => (
+            <div key={p.id} className="proj-card" style={{ background: '#060303', overflow: 'hidden' }}>
+              {/* Image */}
+              <div style={{ position: 'relative', overflow: 'hidden' }}>
+                <img src={p.img} alt={p.title} className="proj-img" />
+                <span style={{ position: 'absolute', top: 12, right: 12, ...mono, fontSize: '0.58rem', color: '#7a6a60', background: 'rgba(0,0,0,0.8)', padding: '3px 8px', border: '1px solid rgba(255,255,255,0.06)' }}>
+                  {p.id}
+                </span>
               </div>
-              
-              <div className="p-6">
-                <span className="text-blue-400 text-sm font-semibold">{project.category}</span>
-                <h3 className="text-xl font-bold text-white mt-2 mb-3">{project.title}</h3>
-                <p className="text-gray-400 mb-4">{project.description}</p>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="px-3 py-1 bg-gray-800 text-gray-300 text-sm rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+
+              {/* Body */}
+              <div style={{ padding: '24px 26px' }}>
+                <div style={{ ...mono, fontSize: '0.6rem', color: '#7a6a60', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: 8 }}>
+                  {p.category}
                 </div>
-                
-                <div className="flex gap-4">
-                  <a
-                    href={project.links.live}
-                    className="flex items-center text-blue-400 hover:text-blue-300"
-                  >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Live Demo
-                  </a>
-                  <a
-                    href={project.links.github}
-                    className="flex items-center text-blue-400 hover:text-blue-300"
-                  >
-                    <Github className="w-4 h-4 mr-2" />
-                    Source Code
-                  </a>
+                <h3 style={{ fontFamily: 'Inter, sans-serif', fontSize: '1.15rem', fontWeight: 700, color: '#fdfbf7', letterSpacing: '-0.02em', marginBottom: 10 }}>
+                  {p.title}
+                </h3>
+                <p style={{ ...mono, fontSize: '0.72rem', color: '#a39185', lineHeight: 1.8, marginBottom: 18 }}>
+                  {p.desc}
+                </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 18 }}>
+                  {p.tags.map(t => <span key={t} className="tag" style={{ fontSize: '0.62rem' }}>{t}</span>)}
+                </div>
+                <div style={{ display: 'flex', gap: 18, borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: 14 }}>
+                  {[['[ GITHUB ]', p.github], ['[ LIVE DEMO ↗ ]', p.live]].map(([label, href]) => (
+                    <a key={label as string} href={href as string} style={{ ...mono, fontSize: '0.65rem', color: '#7a6a60', transition: 'color 0.15s', cursor: 'none' }}
+                      onMouseEnter={e => (e.currentTarget.style.color = '#a39185')}
+                      onMouseLeave={e => (e.currentTarget.style.color = '#7a6a60')}>
+                      {label}
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </section>
-  );
-};
 
-export default Portfolio;
+      <style>{`
+        @media (max-width: 768px) { .proj-grid { grid-template-columns: 1fr !important; } }
+      `}</style>
+    </div>
+  );
+}

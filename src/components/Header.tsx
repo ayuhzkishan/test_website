@@ -1,90 +1,146 @@
-import React from 'react';
-import { Menu, X, Github, Linkedin, Twitter } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+const TICKER =
+  'Ayush Kishan · Android Developer · DevOps Practitioner · Cybersecurity Enthusiast · VSSUT Burla · Available for Internships · Built with precision · PoC || GTFO · ';
 
-  const menuItems = [
-    { title: 'Home', href: '#home' },
-    { title: 'About', href: '#about' },
-    { title: 'Skills', href: '#skills' },
-    { title: 'Portfolio', href: '#portfolio' },
-    { title: 'Experience', href: '#experience' },
-    { title: 'Testimonials', href: '#testimonials' },
-    { title: 'Blog', href: '#blog' },
-    { title: 'Contact', href: '#contact' },
-  ];
+const NAV = [
+  { label: 'About',      href: '#about'      },
+  { label: 'Skills',     href: '#skills'     },
+  { label: 'Projects',   href: '#portfolio'  },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Blog',       href: '#blog'       },
+];
 
-  return (
-    <header className="fixed top-0 left-0 right-0 bg-[#020817] shadow-lg z-50 border-b border-gray-800">
-      <nav className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-8">
-            <a href="#" className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">AK</a>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-6">
-              {menuItems.map((item) => (
-                <a
-                  key={item.title}
-                  href={item.href}
-                  className="text-gray-400 hover:text-primary transition-colors text-sm"
-                >
-                  {item.title}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex items-center space-x-6">
-            {/* Social Links */}
-            <div className="hidden md:flex items-center space-x-4">
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors hover-glow">
-                <Github className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors hover-glow">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors hover-glow">
-                <Twitter className="w-5 h-5" />
-              </a>
-            </div>
-
-            <a
-              href="#about"
-              className="hidden md:inline-block px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-lg transition-all duration-300 text-sm"
-            >
-              Learn More
-            </a>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden text-gray-400 hover:text-primary"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4">
-            {menuItems.map((item) => (
-              <a
-                key={item.title}
-                href={item.href}
-                className="block py-2 text-gray-400 hover:text-primary"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.title}
-              </a>
-            ))}
-          </div>
-        )}
-      </nav>
-    </header>
-  );
+function useLiveMeta() {
+  const [t, setT] = useState(new Date());
+  useEffect(() => {
+    const id = setInterval(() => setT(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  return {
+    utc:   t.toUTCString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1'),
+    local: t.toLocaleTimeString('en-IN', { hour12: false }),
+    unix:  Math.floor(t.getTime() / 1000),
+  };
 }
 
-export default Header;
+const mono: React.CSSProperties = { fontFamily: 'JetBrains Mono, monospace' };
+
+export default function Header() {
+  const [open,    setOpen]    = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const meta = useLiveMeta();
+
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 12);
+    window.addEventListener('scroll', fn, { passive: true });
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
+
+  return (
+    <>
+      {/* ── Scrolling ticker bar ── */}
+      <div className="ticker">
+        <div className="ticker-track">
+          {/* doubled for seamless loop */}
+          <span className="ticker-item">{TICKER}</span>
+          <span className="ticker-item">{TICKER}</span>
+          <span className="ticker-item">{TICKER}</span>
+          <span className="ticker-item">{TICKER}</span>
+        </div>
+      </div>
+
+      {/* ── Navbar ── */}
+      <header
+        className="navbar"
+        style={{ borderBottomColor: scrolled ? 'rgba(253,251,247,0.12)' : 'rgba(253,251,247,0.07)' }}
+      >
+        <div className="nav-inner">
+          {/* Logo */}
+          <a href="#home" className="nav-logo">
+            <div className="nav-logo-icon">AK</div>
+            <span>AYUSH KISHAN</span>
+          </a>
+
+          {/* Desktop nav */}
+          <ul className="nav-links">
+            {NAV.map(n => (
+              <li key={n.href}>
+                <a href={n.href}>{n.label}</a>
+              </li>
+            ))}
+          </ul>
+
+          {/* Live clock — UTC / LOCAL */}
+          <div className="nav-clock" style={{
+            ...mono,
+            fontSize: '0.58rem',
+            color: '#a39185', /* Warm yellowish grey */
+            lineHeight: 1.6,
+            textAlign: 'right',
+            flexShrink: 0,
+          }}>
+            <div>UTC: {meta.utc} &nbsp; LOCAL: {meta.local}</div>
+            <div>UNIX: {meta.unix} &nbsp; GMT+5:30 &nbsp;<span className="status-dot" />ON</div>
+          </div>
+
+          {/* Desktop CTAs */}
+          <div className="nav-actions">
+            <a href="#portfolio" className="btn btn-outline">View Work ↗</a>
+            <a href="#contact"   className="btn btn-primary">Hire Me ↗</a>
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            className="mobile-btn"
+            onClick={() => setOpen(o => !o)}
+            style={{
+              display: 'none',
+              background: 'none',
+              border: '1px solid rgba(253,251,247,0.1)',
+              color: '#fdfbf7',
+              padding: '6px 12px',
+              fontFamily: 'JetBrains Mono, monospace',
+              fontSize: '0.62rem',
+              cursor: 'none',
+            }}
+            aria-label="Toggle menu"
+          >
+            {open ? '[CLOSE]' : '[MENU]'}
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        {open && (
+          <div style={{
+            background: '#060303',
+            borderTop: '1px solid rgba(253,251,247,0.07)',
+            padding: '16px 28px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 12,
+          }}>
+            {NAV.map(n => (
+              <a
+                key={n.href}
+                href={n.href}
+                onClick={() => setOpen(false)}
+                style={{ ...mono, fontSize: '0.75rem', color: '#52525b', padding: '6px 0', cursor: 'none' }}
+              >
+                {n.label}
+              </a>
+            ))}
+            {/* Clock in mobile too */}
+            <div style={{ ...mono, fontSize: '0.62rem', color: '#3f3f46', paddingTop: 8, lineHeight: 1.8 }}>
+              <div>UTC: {meta.utc} · LOCAL: {meta.local}</div>
+              <div>UNIX: {meta.unix}</div>
+            </div>
+            <div style={{ paddingTop: 8 }}>
+              <a href="#contact" className="btn btn-primary" onClick={() => setOpen(false)}>Hire Me ↗</a>
+            </div>
+          </div>
+        )}
+      </header>
+    </>
+  );
+}

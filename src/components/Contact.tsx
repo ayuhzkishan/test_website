@@ -1,125 +1,105 @@
-import React from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
+import React, { useState } from 'react';
 
-const Contact = () => {
+const mono: React.CSSProperties = { fontFamily: 'JetBrains Mono, monospace' };
+
+export default function Contact() {
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const handle = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
   return (
-    <section id="contact" className="py-20 bg-gray-800">
-      <div className="container mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-16">Get in Touch</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div className="bg-gray-900/50 p-8 rounded-xl backdrop-blur-sm border border-gray-700">
-            <h3 className="text-2xl font-semibold text-white mb-6">Send a Message</h3>
-            <form className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 text-white"
-                  placeholder="Ayush Kishan"
-                />
+    <div id="contact" className="section-wrap">
+      <div className="section">
+        <span className="section-label">Get in Touch</span>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 72, alignItems: 'start' }} className="contact-layout">
+          {/* Left — copy + info */}
+          <div>
+            <h2 className="section-title" style={{ marginBottom: 20 }}>
+              Let's work<br />together.
+            </h2>
+            <p className="section-sub" style={{ marginBottom: 48 }}>
+              Open to internships, collaborations, and interesting engineering problems. Reach out — let's build something worthwhile.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
+              {[
+                { label: 'EMAIL',    val: 'ayush.kishan29@gmail.com', href: 'mailto:ayush.kishan29@gmail.com' },
+                { label: 'PHONE',    val: '+91 78949-74368',          href: 'tel:+917894974368' },
+                { label: 'LOCATION', val: 'Sambalpur, Odisha, India', href: null },
+              ].map(item => (
+                <div key={item.label}>
+                  <div style={{ ...mono, fontSize: '0.55rem', color: '#3f3f46', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: 4 }}>
+                    {item.label}
+                  </div>
+                  {item.href ? (
+                    <a href={item.href} style={{ ...mono, fontSize: '0.82rem', color: '#71717a', transition: 'color 0.15s', cursor: 'none' }}
+                      onMouseEnter={e => (e.currentTarget.style.color = '#fdfbf7')}
+                      onMouseLeave={e => (e.currentTarget.style.color = '#71717a')}>
+                      {item.val}
+                    </a>
+                  ) : (
+                    <span style={{ ...mono, fontSize: '0.82rem', color: '#71717a' }}>{item.val}</span>
+                  )}
+                </div>
+              ))}
+
+              {/* Social links */}
+              <div style={{ marginTop: 12, display: 'flex', gap: 16 }}>
+                {[['[ GITHUB ]','https://github.com/ayuhzkishan'],['[ LINKEDIN ]','#'],['[ TWITTER ]','#']].map(([label, href]) => (
+                  <a key={label} href={href} target="_blank" rel="noreferrer"
+                    style={{ ...mono, fontSize: '0.65rem', color: '#27272a', transition: 'color 0.15s', cursor: 'none' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#a1a1aa')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#27272a')}>
+                    {label}
+                  </a>
+                ))}
               </div>
-              
+            </div>
+          </div>
+
+          {/* Right — form */}
+          <div className="card" style={{ padding: '36px' }}>
+            <form onSubmit={e => e.preventDefault()} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+              {[
+                { id: 'name',    label: 'Your Name',      type: 'text',  placeholder: 'Ayush Kishan' },
+                { id: 'email',   label: 'Email Address',  type: 'email', placeholder: 'you@example.com' },
+              ].map(f => (
+                <div key={f.id}>
+                  <label htmlFor={f.id} className="form-label">{f.label}</label>
+                  <input
+                    className="form-input"
+                    id={f.id} name={f.id} type={f.type}
+                    placeholder={f.placeholder}
+                    value={(form as any)[f.id]}
+                    onChange={handle}
+                    style={{ cursor: 'none' }}
+                  />
+                </div>
+              ))}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 text-white"
-                  placeholder="ayush@example.com"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                  Message
-                </label>
+                <label htmlFor="message" className="form-label">Message</label>
                 <textarea
-                  id="message"
-                  rows={4}
-                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 text-white resize-none"
-                  placeholder="Your message..."
+                  className="form-input"
+                  id="message" name="message" rows={5}
+                  placeholder="Tell me about your project..."
+                  value={form.message}
+                  onChange={handle}
+                  style={{ cursor: 'none' }}
                 />
               </div>
-              
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center gap-2 px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-              >
-                <Send className="w-4 h-4" />
-                Send Message
+              <button type="submit" className="btn btn-primary"
+                style={{ width: '100%', justifyContent: 'center', padding: '14px', fontSize: '0.75rem', cursor: 'none', marginTop: 4 }}>
+                SEND MESSAGE ↗
               </button>
             </form>
           </div>
-          
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="bg-gray-900/50 p-8 rounded-xl backdrop-blur-sm border border-gray-700">
-              <h3 className="text-2xl font-semibold text-white mb-6">Contact Information</h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <Mail className="w-6 h-6 text-blue-400" />
-                  <div>
-                    <p className="text-gray-300">Email</p>
-                    <a href="mailto:ayush.kishan29@gmail.com.com" className="text-white hover:text-blue-400">
-                    ayush.kishan29@gmail.com.com
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <Phone className="w-6 h-6 text-blue-400" />
-                  <div>
-                    <p className="text-gray-300">Phone</p>
-                    <a href="tel:+91 78949-74368" className="text-white hover:text-blue-400">
-                      +91 78949-74368
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <MapPin className="w-6 h-6 text-blue-400" />
-                  <div>
-                    <p className="text-gray-300">Location</p>
-                    <p className="text-white">Sambalpur, Odisha IN</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Social Links */}
-            <div className="bg-gray-900/50 p-8 rounded-xl backdrop-blur-sm border border-gray-700">
-              <h3 className="text-2xl font-semibold text-white mb-6">Connect with Me</h3>
-              <div className="flex gap-4">
-                <a
-                  href="#"
-                  className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-800 text-blue-400 hover:bg-blue-500 hover:text-white transition-colors"
-                >
-                  <Github className="w-6 h-6" />
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-800 text-blue-400 hover:bg-blue-500 hover:text-white transition-colors"
-                >
-                  <Linkedin className="w-6 h-6" />
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-800 text-blue-400 hover:bg-blue-500 hover:text-white transition-colors"
-                >
-                  <Twitter className="w-6 h-6" />
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
-    </section>
-  );
-};
 
-export default Contact;
+      <style>{`
+        @media (max-width: 900px) { .contact-layout { grid-template-columns: 1fr !important; } }
+      `}</style>
+    </div>
+  );
+}
