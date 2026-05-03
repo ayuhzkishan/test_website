@@ -1,24 +1,20 @@
 import React from 'react';
 
 const ASCII_BAT = `
-       _==/          i     i          \\==_
-     /XX/            |\\___/|            \\XX\\
-   /XXXX\\            |XXXXX|            /XXXX\\
-  |XXXXXX\\_         _XXXXXXX_         _/XXXXXX|
- XXXXXXXXXXXxxxxxxxXXXXXXXXXXXxxxxxxxXXXXXXXXXXX
-|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|
- XXXXXX/^^^^"\\XXXXXXXXXXXXXXXXXXXXX/^^^^^\\XXXXXX
-  |XXX|       \\XXX/^^\\XXXXX/^^\\XXX/       |XXX|
-    \\X\\         \\X\\    \\X/    /X/         /X/
-       \\         \\X\\   /X\\   /X/         /
-                  \\X\\ /XXX\\ /X/
-                   \\X\\XXXXX/X/
-                    \\X\\XXX/X/
-                     \\X\\X/X/
-                      \\XXX/
-                       \\X/
+             ▄▄▄▄▄                   ▄▄▄▄▄             
+           ▄███████▄               ▄███████▄           
+         ▄███████████▄   ▄▄▄▄▄   ▄███████████▄         
+       ▄███████████████████████████████████████▄       
+     ▄███████████████████████████████████████████▄     
+    ███████████████████████████████████████████████    
+    ███████████████████████████████████████████████    
+     █████████████████████████████████████████████     
+      ▀██████▀▀▀▀██████████████████████▀▀▀▀██████▀     
+        ▀███        ▀███████▀▀▀███████▀       ███▀     
+                       ▀████     ████▀                 
+                         ▀██▄   ▄██▀                   
+                           ▀██▄██▀                     
+                              ▀                        
 `;
 
 const SOCIALS = [
@@ -72,8 +68,8 @@ export default function Connect() {
               left: '50%',
               transform: 'translate(-50%, -50%)',
               margin: 0,
-              color: 'rgba(253,251,247,0.3)', /* Strong visibility */
-              textShadow: '0 0 15px rgba(220, 38, 38, 0.6), 0 0 35px rgba(220, 38, 38, 0.4)', /* Red glow */
+              color: 'rgba(253,251,247,0.08)', /* Lowered opacity because block characters are visually heavier */
+              textShadow: '0 0 20px rgba(220, 38, 38, 0.3)', /* Softer glow for better readability */
               ...mono,
               fontSize: '14px',
               lineHeight: '14px',
