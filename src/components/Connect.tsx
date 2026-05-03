@@ -183,6 +183,10 @@ export default function Connect() {
           0% { transform: translateY(0); }
           100% { transform: translateY(-50%); }
         }
+        @keyframes horizontal-scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
         .v-scroll-track {
           animation: vertical-scroll 15s linear infinite;
         }
@@ -191,8 +195,15 @@ export default function Connect() {
         }
         @media (max-width: 900px) {
           .connect-layout { grid-template-columns: 1fr !important; }
-          .v-scroll-track { animation: none; flex-direction: row; overflow-x: auto; position: relative !important; }
-          .social-box { min-width: 260px; height: 100px !important; }
+          .v-scroll-track { 
+            animation: horizontal-scroll 20s linear infinite !important; 
+            flex-direction: row !important; 
+            width: max-content;
+            position: relative !important; 
+          }
+          .social-box { min-width: 200px; height: 80px !important; }
+          /* Hide brackets on mobile to keep the ticker clean */
+          .v-scroll-track > div > div:first-child { display: none !important; }
         }
       `}</style>
     </div>

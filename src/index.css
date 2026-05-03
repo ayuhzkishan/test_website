@@ -518,7 +518,7 @@ h1, h2, h3, h4, h5 {
 
 /* ─── Responsive ─────────────────────────────────── */
 @media (max-width: 900px) {
-  .nav-links, .nav-actions, .nav-clock { display: none; }
+  .nav-links, .nav-actions { display: none; }
   .mobile-btn { display: block !important; }
   .diag-panel { display: none; }
   .section { padding: 60px 20px; }
