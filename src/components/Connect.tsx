@@ -1,30 +1,24 @@
 import React from 'react';
 
-const ASCII_HOODIE = `
-                                       ..::^^^^::..                                       
-                                 .:^~!!7777777777!!~^:.                                 
-                             .:^!777777777777777777777!^:.                             
-                           .^!7777777777777777777777777777!^.                           
-                         .~7777777777777777777777777777777777~.                         
-                       .!77777777777777777777777777777777777777!.                       
-                      ~777777777777777777777777777777777777777777~                      
-                    .7777777777777777777777777777777777777777777777.                    
-                   .777777777777777777777777777777777777777777777777.                   
-                  .77777777777777777777777777777777777777777777777777.                  
-                  !77777777777777777777777777777777777777777777777777!                  
-                 ~7777777777777777777777777777777777777777777777777777~                 
-                 777777777777777777777777777777777777777777777777777777                 
-                .777777777777777777777777777777777777777777777777777777.                
-                .777777777777777777777777777777777777777777777777777777.                
-                 !7777777777777777777777777777777777777777777777777777!                 
-                 :7777777777777777777777777777777777777777777777777777:                 
-                  ~77777777777777777777777777777777777777777777777777~                  
-                   !777777777777777777777777777777777777777777777777!                   
-                    ~7777777777777777777777777777777777777777777777~                    
-                     ^77777777777777777777777777777777777777777777^                     
-                      .^!77777777777777777777777777777777777777!^.                      
-                         .:^~!!77777777777777777777777777!!~^:.                         
-                               .::^^^^^^^^^^^^^^^^^^^^::.                               
+const ASCII_BAT = `
+       _==/          i     i          \\==_
+     /XX/            |\\___/|            \\XX\\
+   /XXXX\\            |XXXXX|            /XXXX\\
+  |XXXXXX\\_         _XXXXXXX_         _/XXXXXX|
+ XXXXXXXXXXXxxxxxxxXXXXXXXXXXXxxxxxxxXXXXXXXXXXX
+|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|
+ XXXXXX/^^^^"\\XXXXXXXXXXXXXXXXXXXXX/^^^^^\\XXXXXX
+  |XXX|       \\XXX/^^\\XXXXX/^^\\XXX/       |XXX|
+    \\X\\         \\X\\    \\X/    /X/         /X/
+       \\         \\X\\   /X\\   /X/         /
+                  \\X\\ /XXX\\ /X/
+                   \\X\\XXXXX/X/
+                    \\X\\XXX/X/
+                     \\X\\X/X/
+                      \\XXX/
+                       \\X/
 `;
 
 const SOCIALS = [
@@ -71,22 +65,23 @@ export default function Connect() {
           {/* ── Left Side: Content & ASCII Bg ── */}
           <div style={{ position: 'relative', padding: '40px 32px', overflow: 'hidden', borderRight: '1px solid rgba(253,251,247,0.06)' }}>
             
-            {/* ASCII Hacker Bg */}
+            {/* ASCII Batman Bg */}
             <pre style={{
               position: 'absolute',
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
               margin: 0,
-              color: 'rgba(253,251,247,0.04)',
+              color: 'rgba(253,251,247,0.3)', /* Strong visibility */
+              textShadow: '0 0 15px rgba(220, 38, 38, 0.6), 0 0 35px rgba(220, 38, 38, 0.4)', /* Red glow */
               ...mono,
-              fontSize: '11px',
-              lineHeight: '11px',
+              fontSize: '14px',
+              lineHeight: '14px',
               pointerEvents: 'none',
               userSelect: 'none',
               zIndex: 0
             }}>
-              {ASCII_HOODIE}
+              {ASCII_BAT}
             </pre>
 
             <div style={{ position: 'relative', zIndex: 1, maxWidth: 640 }}>
