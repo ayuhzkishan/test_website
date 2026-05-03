@@ -40,10 +40,10 @@ export default function About() {
             <h2 className="section-title">
               I build things<br />that actually work.
             </h2>
-            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.8rem', color: '#a39185', lineHeight: 1.9, marginBottom: 20 }}>
+            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.8rem', color: '#a39185', lineHeight: 1.9, marginBottom: 20 }}>
               I'm a passionate technologist and undergrad at VSSUT, Burla — specialising in Android development, DevOps, and cybersecurity. My work is defined by one principle: ship secure, reliable software.
             </p>
-            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.8rem', color: '#a39185', lineHeight: 1.9, marginBottom: 44 }}>
+            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.8rem', color: '#a39185', lineHeight: 1.9, marginBottom: 44 }}>
               Beyond code, I lead teams, organise large-scale events, and translate complex technical concepts into clear communication for stakeholders and communities alike.
             </p>
 
@@ -56,10 +56,10 @@ export default function About() {
                 { num: '500+', label: 'Event Attendees'  },
               ].map(s => (
                 <div key={s.label} className="card" style={{ padding: '16px 22px', textAlign: 'center', minWidth: 90 }}>
-                  <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '1.8rem', fontWeight: 800, color: '#fdfbf7', letterSpacing: '-0.04em', lineHeight: 1 }}>
+                  <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '1.8rem', fontWeight: 800, color: '#fdfbf7', letterSpacing: '-0.04em', lineHeight: 1 }}>
                     {s.num}
                   </div>
-                  <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.58rem', color: '#7a6a60', marginTop: 6, textTransform: 'uppercase', letterSpacing: '0.12em' }}>
+                  <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.58rem', color: '#7a6a60', marginTop: 6, textTransform: 'uppercase', letterSpacing: '0.12em' }}>
                     {s.label}
                   </div>
                 </div>
@@ -87,7 +87,7 @@ export default function About() {
             <div style={{
               marginTop: 20,
               padding: '12px 4px',
-              fontFamily: 'JetBrains Mono, monospace',
+              fontFamily: "'Space Mono', monospace",
               fontSize: '0.72rem',
               color: '#a39185',
               lineHeight: 2,

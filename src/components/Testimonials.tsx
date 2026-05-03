@@ -25,7 +25,8 @@ const TESTIMONIALS = [
   },
 ];
 
-const mono: React.CSSProperties = { fontFamily: 'JetBrains Mono, monospace' };
+const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" };
+const techMono: React.CSSProperties = { fontFamily: "'Space Mono', monospace" };
 
 function TestiCard({ t }: { t: typeof TESTIMONIALS[0] }) {
   const [hovered, setHovered] = useState(false);
@@ -89,14 +90,14 @@ function TestiCard({ t }: { t: typeof TESTIMONIALS[0] }) {
       <div style={{ position: 'relative' }}>
         {/* Top-left quote mark */}
         <div style={{
-          fontFamily: 'Inter, sans-serif', fontSize: '2rem', fontWeight: 900,
+          fontFamily: "'Space Grotesk', sans-serif", fontSize: '2rem', fontWeight: 900,
           color: isActive ? 'rgba(220,38,38,0.2)' : 'rgba(253,251,247,0.06)',
           lineHeight: 1, marginBottom: 8, transition: 'color 0.4s ease',
         }}>“</div>
 
         {/* Primary Quote */}
         <p style={{
-          fontFamily: 'Inter, sans-serif', fontSize: '1rem', fontWeight: 500,
+          fontFamily: "'Space Grotesk', sans-serif", fontSize: '1rem', fontWeight: 500,
           color: isActive ? '#fdfbf7' : '#eaddc5', lineHeight: 1.5,
           letterSpacing: '-0.02em', marginBottom: 12, transition: 'color 0.4s ease',
         }}>
@@ -115,7 +116,7 @@ function TestiCard({ t }: { t: typeof TESTIMONIALS[0] }) {
 
         {/* Bottom-right quote mark */}
         <div style={{
-          fontFamily: 'Inter, sans-serif', fontSize: '2rem', fontWeight: 900,
+          fontFamily: "'Space Grotesk', sans-serif", fontSize: '2rem', fontWeight: 900,
           color: isActive ? 'rgba(220,38,38,0.2)' : 'rgba(253,251,247,0.06)',
           lineHeight: 1, textAlign: 'right', transition: 'color 0.4s ease',
         }}>”</div>
@@ -138,11 +139,11 @@ function TestiCard({ t }: { t: typeof TESTIMONIALS[0] }) {
           />
           <div>
             <div style={{
-              fontFamily: 'Inter, sans-serif', fontWeight: 600, fontSize: '0.8rem',
+              fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: '0.8rem',
               color: isActive ? '#fdfbf7' : '#a39185', transition: 'color 0.4s ease',
             }}>{t.name}</div>
             <div style={{
-              ...mono, fontSize: '0.55rem', color: isActive ? 'rgba(220,38,38,0.7)' : '#5a4a45',
+              ...techMono, fontSize: '0.55rem', color: isActive ? 'rgba(220,38,38,0.7)' : '#5a4a45',
               marginTop: 2, transition: 'color 0.4s ease',
             }}>{t.role}</div>
           </div>
@@ -174,7 +175,7 @@ export default function Testimonials() {
       <div className="section" style={{ position: 'relative', zIndex: 1 }}>
         <span className="section-label">TESTIMONIALS</span>
         <h2 style={{ 
-          fontFamily: 'Inter, sans-serif', 
+          fontFamily: "'Space Grotesk', sans-serif", 
           fontSize: 'clamp(2rem, 4vw, 3rem)', 
           fontWeight: 600, 
           color: '#fdfbf7', 

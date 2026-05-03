@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-const mono: React.CSSProperties = { fontFamily: 'JetBrains Mono, monospace' };
+const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" };
+const techMono: React.CSSProperties = { fontFamily: "'Space Mono', monospace" };
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -29,7 +30,7 @@ export default function Contact() {
                 { label: 'LOCATION', val: 'Sambalpur, Odisha, India', href: null },
               ].map(item => (
                 <div key={item.label}>
-                  <div style={{ ...mono, fontSize: '0.55rem', color: '#3f3f46', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: 4 }}>
+                  <div style={{ ...techMono, fontSize: '0.55rem', color: '#3f3f46', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: 4 }}>
                     {item.label}
                   </div>
                   {item.href ? (

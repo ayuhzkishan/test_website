@@ -40,7 +40,8 @@ const PROJECTS = [
   },
 ];
 
-const mono: React.CSSProperties = { fontFamily: 'JetBrains Mono, monospace' };
+const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" };
+const techMono: React.CSSProperties = { fontFamily: "'Space Mono', monospace" };
 
 function ProjectCard({ p }: { p: typeof PROJECTS[0] }) {
   const [hovered, setHovered] = useState(false);
@@ -103,17 +104,17 @@ function ProjectCard({ p }: { p: typeof PROJECTS[0] }) {
             transition: 'filter 0.5s ease, transform 0.5s ease'
           }}
         />
-        <span style={{ position: 'absolute', top: 12, right: 12, ...mono, fontSize: '0.58rem', color: '#7a6a60', background: 'rgba(0,0,0,0.8)', padding: '3px 8px', border: '1px solid rgba(255,255,255,0.06)' }}>
+        <span style={{ position: 'absolute', top: 12, right: 12, ...techMono, fontSize: '0.58rem', color: '#7a6a60', background: 'rgba(0,0,0,0.8)', padding: '3px 8px', border: '1px solid rgba(255,255,255,0.06)' }}>
           {p.id}
         </span>
       </div>
 
       {/* Body */}
       <div style={{ padding: '28px 32px' }}>
-        <div style={{ ...mono, fontSize: '0.6rem', color: isActive ? '#a39185' : '#7a6a60', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: 12, transition: 'color 0.4s ease' }}>
+        <div style={{ ...techMono, fontSize: '0.6rem', color: isActive ? '#a39185' : '#7a6a60', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: 12, transition: 'color 0.4s ease' }}>
           {p.category}
         </div>
-        <h3 style={{ fontFamily: 'Inter, sans-serif', fontSize: '1.2rem', fontWeight: 700, color: '#fdfbf7', letterSpacing: '-0.02em', marginBottom: 12 }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '1.2rem', fontWeight: 700, color: '#fdfbf7', letterSpacing: '-0.02em', marginBottom: 12 }}>
           {p.title}
         </h3>
         <p style={{ ...mono, fontSize: '0.72rem', color: '#a39185', lineHeight: 1.8, marginBottom: 20 }}>

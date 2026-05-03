@@ -24,7 +24,8 @@ function useLiveMeta() {
   };
 }
 
-const mono: React.CSSProperties = { fontFamily: 'JetBrains Mono, monospace' };
+const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" };
+const techMono: React.CSSProperties = { fontFamily: "'Space Mono', monospace" };
 
 export default function Header() {
   const [open,    setOpen]    = useState(false);
@@ -73,7 +74,7 @@ export default function Header() {
 
           {/* Live clock — UTC / LOCAL */}
           <div className="nav-clock" style={{
-            ...mono,
+            ...techMono,
             fontSize: '0.58rem',
             color: '#a39185', /* Warm yellowish grey */
             lineHeight: 1.6,
@@ -100,7 +101,7 @@ export default function Header() {
               border: '1px solid rgba(253,251,247,0.1)',
               color: '#fdfbf7',
               padding: '6px 12px',
-              fontFamily: 'JetBrains Mono, monospace',
+              fontFamily: "'IBM Plex Mono', monospace",
               fontSize: '0.62rem',
               cursor: 'none',
             }}
@@ -138,7 +139,7 @@ export default function Header() {
               </a>
             ))}
             {/* Clock in mobile too */}
-            <div style={{ ...mono, fontSize: '0.62rem', color: '#5a4a45', paddingTop: 8, lineHeight: 1.8 }}>
+            <div style={{ ...techMono, fontSize: '0.62rem', color: '#5a4a45', paddingTop: 8, lineHeight: 1.8 }}>
               <div>UTC: {meta.utc} · LOCAL: {meta.local}</div>
               <div>UNIX: {meta.unix}</div>
             </div>

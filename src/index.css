@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,20 +10,22 @@ html { scroll-behavior: smooth; }
 body {
   background: #060303;
   color: #a39185;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-smoothing: grayscale;
   overflow-x: hidden;
   cursor: none;
 }
 a  { color: inherit; text-decoration: none; }
 img { display: block; }
 h1, h2, h3, h4, h5 {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   color: #fdfbf7;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   line-height: 1.05;
 }
+
+.font-space { font-family: 'Space Mono', monospace; }
 ::-webkit-scrollbar { width: 2px; }
 ::-webkit-scrollbar-track { background: #060303; }
 ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 2px; }
@@ -94,7 +96,7 @@ h1, h2, h3, h4, h5 {
   will-change: transform;
 }
 .ticker-item {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Space Mono', monospace;
   font-size: 0.6rem;
   color: #a39185; /* Warm yellowish grey */
   padding: 0 48px;
@@ -134,7 +136,7 @@ h1, h2, h3, h4, h5 {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 800;
   font-size: 0.88rem;
   color: #fdfbf7;
@@ -152,7 +154,7 @@ h1, h2, h3, h4, h5 {
   color: #060303;
   font-weight: 900;
   font-size: 0.6rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Space Mono', monospace;
   flex-shrink: 0;
 }
 .nav-links {
@@ -162,7 +164,7 @@ h1, h2, h3, h4, h5 {
   list-style: none;
 }
 .nav-links a {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -182,7 +184,7 @@ h1, h2, h3, h4, h5 {
 
 /* ─── Clipped-corner buttons ─────────────────────── */
 .btn {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-weight: 700;
   font-size: 0.65rem;
   text-transform: uppercase;
@@ -250,7 +252,7 @@ h1, h2, h3, h4, h5 {
   overflow: hidden;
 }
 .hero-ascii-text {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
   line-height: 14px;
   color: rgba(253, 251, 247, 0.075);
@@ -276,7 +278,7 @@ h1, h2, h3, h4, h5 {
   width: 100%;
 }
 .hero-headline {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 500; /* Lighter weight like hacktron */
   color: #fdfbf7;
@@ -285,7 +287,7 @@ h1, h2, h3, h4, h5 {
   margin-bottom: 28px;
 }
 .hero-sub {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.85rem;
   color: #a39185;
   line-height: 1.9;
@@ -316,7 +318,7 @@ h1, h2, h3, h4, h5 {
   margin-bottom: 8px;
 }
 .diag-text {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Space Mono', monospace;
   font-size: 0.56rem;
   color: #3f3f46;
   line-height: 1.9;
@@ -348,7 +350,7 @@ h1, h2, h3, h4, h5 {
   }
 }
 .section-label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Space Mono', monospace;
   font-size: 0.75rem; /* Increased font size */
   text-transform: uppercase;
   letter-spacing: 0.22em;
@@ -357,7 +359,7 @@ h1, h2, h3, h4, h5 {
   margin-bottom: 20px;
 }
 .section-title {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 800;
   color: #fdfbf7;
@@ -366,7 +368,7 @@ h1, h2, h3, h4, h5 {
   margin-bottom: 18px;
 }
 .section-sub {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.78rem;
   color: #a39185; /* Warm yellowish grey */
   line-height: 1.9;
@@ -390,7 +392,7 @@ h1, h2, h3, h4, h5 {
   background: #060303;
   border: 1px solid rgba(253,251,247,0.18); /* Brighter border */
   border-radius: 2px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.75rem; /* Increased text size */
   color: #a39185; /* Warm yellowish grey */
   transition: border-color 0.2s, color 0.2s;
@@ -468,7 +470,7 @@ h1, h2, h3, h4, h5 {
 }
 .quote-card:hover { border-color: rgba(255,255,255,0.14); }
 .quote-mark {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 5rem;
   font-weight: 900;
   color: rgba(255,255,255,0.04);
@@ -481,7 +483,7 @@ h1, h2, h3, h4, h5 {
 /* ─── Form ───────────────────────────────────────── */
 .form-label {
   display: block;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Space Mono', monospace;
   font-size: 0.56rem;
   text-transform: uppercase;
   letter-spacing: 0.16em;
@@ -495,7 +497,7 @@ h1, h2, h3, h4, h5 {
   border-radius: 2px;
   padding: 11px 14px;
   color: #fdfbf7;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.78rem;
   outline: none;
   transition: border-color 0.2s;

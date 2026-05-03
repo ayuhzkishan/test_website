@@ -183,7 +183,7 @@ export default function Advisories() {
           {/* ── Left Column ── */}
           <div>
             <h2 style={{ 
-              fontFamily: 'Inter, sans-serif', 
+              fontFamily: "'Space Grotesk', sans-serif", 
               fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
               fontWeight: 400, 
               color: '#fdfbf7', 
@@ -193,10 +193,10 @@ export default function Advisories() {
             }}>
               Secure by Design.<br />Deployed at Scale.
             </h2>
-            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.85rem', color: '#a39185', lineHeight: 1.8, marginBottom: 20 }}>
+            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.85rem', color: '#a39185', lineHeight: 1.8, marginBottom: 20 }}>
               Security isn't an afterthought—it's integrated directly into the CI/CD lifecycle. I architect robust pipelines that automatically identify, report, and mitigate risks before they reach production.
             </p>
-            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.85rem', color: '#a39185', lineHeight: 1.8, marginBottom: 40 }}>
+            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.85rem', color: '#a39185', lineHeight: 1.8, marginBottom: 40 }}>
               From static analysis and secret scanning to dynamic testing and compliance enforcement, I leverage an arsenal of industry-standard tools to lock down infrastructure.
             </p>
 
@@ -204,7 +204,7 @@ export default function Advisories() {
               <a href="#devsecops" className="btn btn-outline" style={{ borderColor: 'rgba(255,255,255,0.2)', color: '#fdfbf7', padding: '12px 24px', cursor: 'none' }}>
                 EXPLORE THE STACK
               </a>
-              <a href="#about" style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.8rem', color: '#fdfbf7', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', cursor: 'none' }}>
+              <a href="#about" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.8rem', color: '#fdfbf7', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', cursor: 'none' }}>
                 MEET THE ENGINEER
               </a>
             </div>
@@ -239,7 +239,7 @@ export default function Advisories() {
 
             {/* ID & Badges */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.7rem', color: '#7f1d1d' }}>
+              <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.7rem', color: '#7f1d1d' }}>
                 {activeTool.id}
               </div>
               <div style={{ display: 'flex', gap: 8 }}>
@@ -248,7 +248,7 @@ export default function Advisories() {
                   color: '#fdfbf7', 
                   padding: '4px 8px', 
                   fontSize: '0.65rem', 
-                  fontFamily: 'Inter, sans-serif', 
+                  fontFamily: "'Space Grotesk', sans-serif", 
                   fontWeight: 600,
                   display: 'flex',
                   alignItems: 'center',
@@ -262,7 +262,7 @@ export default function Advisories() {
                   color: '#fdfbf7', 
                   padding: '4px 8px', 
                   fontSize: '0.65rem', 
-                  fontFamily: 'Inter, sans-serif',
+                  fontFamily: "'Space Grotesk', sans-serif",
                   fontWeight: 600
                 }}>
                   {activeTool.vendor}
@@ -271,34 +271,34 @@ export default function Advisories() {
             </div>
 
             {/* Title */}
-            <h3 style={{ fontFamily: 'Inter, sans-serif', fontSize: '1.3rem', fontWeight: 400, color: '#fdfbf7', marginBottom: 16 }}>
+            <h3 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '1.3rem', fontWeight: 400, color: '#fdfbf7', marginBottom: 16 }}>
               {activeTool.title}
             </h3>
             
             <div style={{ height: 1, background: '#2a0f0f', marginBottom: 16 }} />
 
             {/* Description */}
-            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.8rem', color: '#eaddc5', lineHeight: 1.7, minHeight: 140 }}>
+            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.8rem', color: '#eaddc5', lineHeight: 1.7, minHeight: 140 }}>
               {activeTool.description}
             </p>
 
             {/* Data Table */}
             <div className="adv-meta-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 16, marginTop: 24, marginBottom: 16 }}>
               <div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.6rem', color: '#a39185', marginBottom: 6 }}>CATEGORY</div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: '#fdfbf7' }}>{activeTool.category}</div>
+                <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.6rem', color: '#a39185', marginBottom: 6 }}>CATEGORY</div>
+                <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.75rem', color: '#fdfbf7' }}>{activeTool.category}</div>
               </div>
               <div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.6rem', color: '#a39185', marginBottom: 6 }}>ECOSYSTEM</div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: '#fdfbf7' }}>{activeTool.ecosystem}</div>
+                <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.6rem', color: '#a39185', marginBottom: 6 }}>ECOSYSTEM</div>
+                <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.75rem', color: '#fdfbf7' }}>{activeTool.ecosystem}</div>
               </div>
               <div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.6rem', color: '#a39185', marginBottom: 6 }}>TYPE</div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: '#fdfbf7' }}>{activeTool.type}</div>
+                <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.6rem', color: '#a39185', marginBottom: 6 }}>TYPE</div>
+                <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.75rem', color: '#fdfbf7' }}>{activeTool.type}</div>
               </div>
               <div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.6rem', color: '#a39185', marginBottom: 6 }}>STATUS</div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: '#fdfbf7' }}>Active</div>
+                <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.6rem', color: '#a39185', marginBottom: 6 }}>STATUS</div>
+                <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.75rem', color: '#fdfbf7' }}>Active</div>
               </div>
             </div>
 
@@ -306,10 +306,10 @@ export default function Advisories() {
 
             {/* Footer */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.7rem', color: '#a39185', textTransform: 'uppercase' }}>
+              <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.7rem', color: '#a39185', textTransform: 'uppercase' }}>
                 INTEGRATED INTO PIPELINE
               </div>
-              <a href="#contact" style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: '#fdfbf7', cursor: 'none', fontWeight: 600 }}>
+              <a href="#contact" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.75rem', color: '#fdfbf7', cursor: 'none', fontWeight: 600 }}>
                 FULL DETAILS →
               </a>
             </div>

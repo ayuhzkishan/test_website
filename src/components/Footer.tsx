@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-const mono: React.CSSProperties = { fontFamily: 'JetBrains Mono, monospace' };
+const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" };
+const techMono: React.CSSProperties = { fontFamily: "'Space Mono', monospace" };
 
 /* User Agent Parser */
 function parseUA(ua: string) {
@@ -145,9 +146,9 @@ const TICKER_TEXT = 'AK · AYUSH KISHAN · PoC || GTFO · SEC ENGINEERING · CLO
 function DiagRow({ label, value, label2, value2 }: { label: string; value: string; label2?: string; value2?: string }) {
   return (
     <div className="diag-row" style={{ gap: '4px 8px', marginBottom: 5 }}>
-      <span style={{ ...mono, fontSize: '0.55rem', color: '#4a3a35', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label}</span>
+      <span style={{ ...techMono, fontSize: '0.55rem', color: '#4a3a35', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label}</span>
       <span style={{ ...mono, fontSize: '0.55rem', color: '#7a6a60', letterSpacing: '0.04em' }}>{value}</span>
-      {label2 && <span style={{ ...mono, fontSize: '0.55rem', color: '#4a3a35', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label2}</span>}
+      {label2 && <span style={{ ...techMono, fontSize: '0.55rem', color: '#4a3a35', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label2}</span>}
       {value2 && <span style={{ ...mono, fontSize: '0.55rem', color: '#7a6a60', letterSpacing: '0.04em' }}>{value2}</span>}
     </div>
   );
@@ -168,7 +169,7 @@ export default function Footer() {
           {/* ── LEFT panel ── */}
           <div style={{ background: '#060303', padding: '40px 36px' }}>
             {/* About blurb */}
-            <div style={{ ...mono, fontSize: '0.55rem', color: '#4a3a35', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>ABOUT</div>
+            <div style={{ ...techMono, fontSize: '0.55rem', color: '#4a3a35', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>ABOUT</div>
             <p style={{ ...mono, fontSize: '0.72rem', color: '#7a6a60', lineHeight: 1.85, marginBottom: 36, maxWidth: 460 }}>
               Ayush Kishan is a security-first engineer specializing in DevSecOps pipelines, cloud infrastructure hardening, and Android development. Building resilient systems from Sambalpur, India.
             </p>
@@ -177,7 +178,7 @@ export default function Footer() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }} className="footer-nav-grid">
               {NAV_COLS.map(col => (
                 <div key={col.heading}>
-                  <div style={{ ...mono, fontSize: '0.5rem', color: '#4a3a35', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: 14 }}>{col.heading}</div>
+                  <div style={{ ...techMono, fontSize: '0.5rem', color: '#4a3a35', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: 14 }}>{col.heading}</div>
                   {col.links.map(link => (
                     <a
                       key={link.l}
@@ -227,7 +228,7 @@ export default function Footer() {
 
           {/* ── RIGHT panel: Diagnostics ── */}
           <div style={{ background: '#060303', padding: '40px 36px' }}>
-            <div style={{ ...mono, fontSize: '0.55rem', color: '#4a3a35', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 20 }}>DIAGNOSTICS</div>
+            <div style={{ ...techMono, fontSize: '0.55rem', color: '#4a3a35', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 20 }}>DIAGNOSTICS</div>
 
             <DiagRow label="Platform"       value={diag.platform}       label2="Language"      value2={navigator.language} />
             <DiagRow label="Network"        value={diag.network}        label2="Memory"        value2={diag.memory} />
@@ -242,12 +243,12 @@ export default function Footer() {
 
             <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 6 }}>
               <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: '#22c55e', boxShadow: '0 0 5px #22c55e', flexShrink: 0 }} />
-              <span style={{ ...mono, fontSize: '0.55rem', color: '#7a6a60' }}>ON TNF</span>
+              <span style={{ ...techMono, fontSize: '0.55rem', color: '#7a6a60' }}>ON TNF</span>
             </div>
 
             <div style={{ marginTop: 16, paddingTop: 12, borderTop: '1px solid rgba(253,251,247,0.04)' }}>
-              <div style={{ ...mono, fontSize: '0.5rem', color: '#4a3a35', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.1em' }}>User Agent</div>
-              <div style={{ ...mono, fontSize: '0.52rem', color: '#5a4a45', lineHeight: 1.7, wordBreak: 'break-all' }}>
+              <div style={{ ...techMono, fontSize: '0.5rem', color: '#4a3a35', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.1em' }}>User Agent</div>
+              <div style={{ ...techMono, fontSize: '0.52rem', color: '#5a4a45', lineHeight: 1.7, wordBreak: 'break-all' }}>
                 {navigator.userAgent}
               </div>
             </div>
@@ -273,10 +274,10 @@ export default function Footer() {
           willChange: 'transform',
         }}>
           {Array.from({ length: 8 }).map((_, i) => (
-            <span key={i} style={{ ...mono, fontSize: '0.65rem', color: '#3f3f46', padding: '0 32px', letterSpacing: '0.08em', display: 'flex', alignItems: 'center', gap: 24, flexShrink: 0 }}>
+            <span key={i} style={{ ...techMono, fontSize: '0.65rem', color: '#3f3f46', padding: '0 32px', letterSpacing: '0.08em', display: 'flex', alignItems: 'center', gap: 24, flexShrink: 0 }}>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
-                <span style={{ display: 'inline-block', width: 16, height: 16, background: '#fdfbf7', clipPath: 'polygon(4px 0%,100% 0%,100% 100%,0% 100%,0% 4px)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ ...mono, fontSize: '0.4rem', fontWeight: 900, color: '#060303' }}>AK</span>
+                <span style={{ width: 16, height: 16, background: '#fdfbf7', clipPath: 'polygon(4px 0%,100% 0%,100% 100%,0% 100%,0% 4px)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ ...techMono, fontSize: '0.4rem', fontWeight: 900, color: '#060303' }}>AK</span>
                 </span>
                 AYUSH KISHAN
               </span>

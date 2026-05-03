@@ -24,7 +24,8 @@ const GROUPS = [
   },
 ];
 
-const mono: React.CSSProperties = { fontFamily: 'JetBrains Mono, monospace' };
+const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" };
+const techMono: React.CSSProperties = { fontFamily: "'Space Mono', monospace" };
 
 export default function Skills() {
   return (
@@ -52,7 +53,7 @@ export default function Skills() {
                   display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14,
                   paddingBottom: 12, borderBottom: '1px solid rgba(255,255,255,0.06)',
                 }}>
-                  <span style={{ ...mono, fontSize: '0.85rem', color: '#a39185' }}>{g.id}</span>
+                  <span style={{ ...techMono, fontSize: '0.85rem', color: '#a39185' }}>{g.id}</span>
                   <span style={{ ...mono, fontSize: '0.85rem', color: '#eaddc5', textTransform: 'uppercase', letterSpacing: '0.14em' }}>
                     {g.label}
                   </span>

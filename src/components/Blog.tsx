@@ -31,7 +31,8 @@ const POSTS = [
   },
 ];
 
-const mono: React.CSSProperties = { fontFamily: 'JetBrains Mono, monospace' };
+const mono: React.CSSProperties = { fontFamily: "'IBM Plex Mono', monospace" };
+const techMono: React.CSSProperties = { fontFamily: "'Space Mono', monospace" };
 
 function BlogCard({ p }: { p: typeof POSTS[0] }) {
   const [hovered, setHovered] = useState(false);
@@ -90,16 +91,16 @@ function BlogCard({ p }: { p: typeof POSTS[0] }) {
             transition: 'filter 0.5s ease, transform 0.5s ease'
           }}
         />
-        <span style={{ position: 'absolute', top: 12, left: 12, ...mono, fontSize: '0.55rem', color: '#7a6a60', background: 'rgba(0,0,0,0.85)', padding: '4px 8px', border: '1px solid rgba(255,255,255,0.06)' }}>
+        <span style={{ position: 'absolute', top: 12, left: 12, ...techMono, fontSize: '0.55rem', color: '#7a6a60', background: 'rgba(0,0,0,0.85)', padding: '4px 8px', border: '1px solid rgba(255,255,255,0.06)' }}>
           {p.id}
         </span>
       </div>
       <div style={{ padding: '28px 32px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-          <span style={{ ...mono, fontSize: '0.58rem', color: isActive ? '#a39185' : '#7a6a60', textTransform: 'uppercase', letterSpacing: '0.1em', transition: 'color 0.4s ease' }}>{p.cat}</span>
+          <span style={{ ...techMono, fontSize: '0.58rem', color: isActive ? '#a39185' : '#7a6a60', textTransform: 'uppercase', letterSpacing: '0.1em', transition: 'color 0.4s ease' }}>{p.cat}</span>
           <span style={{ ...mono, fontSize: '0.55rem', color: '#4a3a35' }}>{p.date} · {p.time}</span>
         </div>
-        <h3 style={{ fontFamily: 'Inter, sans-serif', fontSize: '1.1rem', fontWeight: 700, color: '#fdfbf7', letterSpacing: '-0.02em', lineHeight: 1.4, marginBottom: 12 }}>
+        <h3 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '1.1rem', fontWeight: 700, color: '#fdfbf7', letterSpacing: '-0.02em', lineHeight: 1.4, marginBottom: 12 }}>
           {p.title}
         </h3>
         <p style={{ ...mono, fontSize: '0.72rem', color: '#a39185', lineHeight: 1.8, marginBottom: 20 }}>
