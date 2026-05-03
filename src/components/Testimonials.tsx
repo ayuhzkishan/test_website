@@ -6,27 +6,21 @@ import narayan  from '../assets/images/Narayan.jpeg';
 
 const TESTIMONIALS = [
   {
-    quoteMain: "Ayush's expertise in Android development and DevOps has been instrumental in modernizing our tech stack.",
-    quoteSub: "His ability to bridge technical and business requirements is exceptional and drove immediate results.",
+    quote: "Ayush's expertise in Android development and DevOps has been instrumental in modernizing our tech stack. His ability to bridge technical and business requirements is exceptional.",
     name:  'Anurag Mahapatra',
-    role:  'AI/ML Lead',
-    company: 'Enigma, VSSUT',
+    role:  'AI/ML Lead · Enigma',
     img:   anurag,
   },
   {
-    quoteMain: "The security implementations Ayush developed have significantly enhanced our system's resilience against cyber threats.",
-    quoteSub: "His proactive approach to security is commendable and highly valued by our engineering team.",
+    quote: "The security implementations Ayush developed have significantly enhanced our system's resilience against cyber threats. His proactive approach to security is commendable.",
     name:  'Pratyush Kumar Sahu',
-    role:  'Web Developer & CS',
-    company: 'IIC',
+    role:  'Web Developer & CS · IIC',
     img:   pratyush,
   },
   {
-    quoteMain: "Working with Ayush in E-Cell has been a game-changer. His leadership and public speaking skills greatly enhanced our engagement.",
-    quoteSub: "He consistently drives success when executing large-scale events and programs.",
+    quote: "Working with Ayush in E-Cell has been a game-changer. His leadership and public speaking skills greatly enhanced our engagement and success executing large events.",
     name:  'Narayan Agarwal',
-    role:  'Event Manager',
-    company: 'E-Cell VSSUT',
+    role:  'Event Manager · E-Cell VSSUT',
     img:   narayan,
   },
 ];
@@ -36,110 +30,104 @@ const mono: React.CSSProperties = { fontFamily: 'JetBrains Mono, monospace' };
 function TestiCard({ t }: { t: typeof TESTIMONIALS[0] }) {
   const [hovered, setHovered] = useState(false);
 
+  // Split quote to mimic screenshot typography
+  const splitIndex = t.quote.indexOf('. ');
+  const part1 = splitIndex !== -1 ? t.quote.substring(0, splitIndex + 1) : t.quote;
+  const part2 = splitIndex !== -1 ? t.quote.substring(splitIndex + 1) : '';
+
   return (
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        background: hovered ? 'rgba(253,251,247,0.02)' : 'transparent',
-        border: '1px solid rgba(253,251,247,0.15)',
-        padding: '40px',
+        background: hovered ? '#0d0505' : 'transparent',
+        padding: '28px 32px',
+        position: 'relative',
+        transition: 'background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease',
+        border: hovered ? '1px solid rgba(220,38,38,0.35)' : '1px solid rgba(253,251,247,0.1)',
+        boxShadow: hovered ? 'inset 0 0 40px rgba(220,38,38,0.04)' : 'none',
+        cursor: 'none',
         display: 'flex',
         flexDirection: 'column',
-        position: 'relative',
-        transition: 'background 0.25s ease',
-        cursor: 'none',
-        height: '100%',
+        justifyContent: 'space-between',
+        minHeight: 280
       }}
     >
+      <div style={{ position: 'relative' }}>
+        {/* Top-left quote mark */}
+        <div style={{
+          fontFamily: 'Inter, sans-serif', fontSize: '2rem', fontWeight: 900,
+          color: hovered ? 'rgba(220,38,38,0.2)' : 'rgba(253,251,247,0.06)',
+          lineHeight: 1, marginBottom: 8, transition: 'color 0.25s ease',
+        }}>“</div>
+
+        {/* Primary Quote */}
+        <p style={{
+          fontFamily: 'Inter, sans-serif', fontSize: '1rem', fontWeight: 500,
+          color: hovered ? '#fdfbf7' : '#eaddc5', lineHeight: 1.5,
+          letterSpacing: '-0.02em', marginBottom: 12, transition: 'color 0.25s ease',
+        }}>
+          {part1}
+        </p>
+
+        {/* Secondary Quote */}
+        {part2 && (
+          <p style={{
+            ...mono, fontSize: '0.65rem', color: hovered ? '#a39185' : '#7a6a60',
+            lineHeight: 1.7, marginBottom: 16, transition: 'color 0.25s ease',
+          }}>
+            {part2}
+          </p>
+        )}
+
+        {/* Bottom-right quote mark */}
+        <div style={{
+          fontFamily: 'Inter, sans-serif', fontSize: '2rem', fontWeight: 900,
+          color: hovered ? 'rgba(220,38,38,0.2)' : 'rgba(253,251,247,0.06)',
+          lineHeight: 1, textAlign: 'right', transition: 'color 0.25s ease',
+        }}>”</div>
+      </div>
+
+      {/* Author & Logo */}
       <div style={{
-        fontFamily: 'Inter, sans-serif',
-        fontSize: '2.5rem',
-        fontWeight: 900,
-        color: 'rgba(253,251,247,0.15)',
-        marginBottom: 16,
-        lineHeight: 0.8,
-      }}>“</div>
-
-      <p style={{
-        fontFamily: 'Inter, sans-serif',
-        fontSize: '1.2rem',
-        fontWeight: 400,
-        color: '#fdfbf7',
-        lineHeight: 1.5,
-        marginBottom: 16,
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        marginTop: 16
       }}>
-        {t.quoteMain}
-      </p>
-
-      <p style={{
-        ...mono,
-        fontSize: '0.75rem',
-        color: '#a39185',
-        lineHeight: 1.6,
-        marginBottom: 16,
-      }}>
-        {t.quoteSub}
-      </p>
-
-      <div style={{
-        fontFamily: 'Inter, sans-serif',
-        fontSize: '2.5rem',
-        fontWeight: 900,
-        color: 'rgba(253,251,247,0.15)',
-        textAlign: 'right',
-        lineHeight: 0.8,
-        marginBottom: 40,
-      }}>”</div>
-
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginTop: 'auto',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <img
-            src={t.img}
-            alt={t.name}
+            src={t.img} alt={t.name}
             style={{
-              width: 52, height: 52,
-              objectFit: 'cover',
-              filter: hovered ? 'grayscale(0%) brightness(1)' : 'grayscale(100%) brightness(0.8)',
-              transition: 'filter 0.35s ease',
+              width: 38, height: 38, objectFit: 'cover',
+              filter: hovered ? 'grayscale(0%) brightness(0.9)' : 'grayscale(100%) brightness(0.6)',
+              border: hovered ? '1px solid rgba(220,38,38,0.4)' : '1px solid transparent',
+              transition: 'filter 0.35s ease, border-color 0.25s ease',
             }}
           />
           <div>
             <div style={{
-              fontFamily: 'Inter, sans-serif',
-              fontWeight: 600,
-              fontSize: '1rem',
-              color: '#fdfbf7',
+              fontFamily: 'Inter, sans-serif', fontWeight: 600, fontSize: '0.8rem',
+              color: hovered ? '#fdfbf7' : '#a39185', transition: 'color 0.25s ease',
             }}>{t.name}</div>
             <div style={{
-              ...mono,
-              fontSize: '0.65rem',
-              color: '#a39185',
-              marginTop: 4,
+              ...mono, fontSize: '0.55rem', color: hovered ? 'rgba(220,38,38,0.7)' : '#5a4a45',
+              marginTop: 2, transition: 'color 0.25s ease',
             }}>{t.role}</div>
-            <div style={{
-              ...mono,
-              fontSize: '0.65rem',
-              color: '#a39185',
-            }}>{t.company}</div>
           </div>
         </div>
 
+        {/* Abstract logo box like screenshot */}
         <div style={{
-           width: 36, height: 36, 
-           position: 'relative',
-           display: 'flex', alignItems: 'center', justifyContent: 'center'
+          width: 32, height: 32, position: 'relative',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          opacity: hovered ? 1 : 0.4, transition: 'opacity 0.25s ease'
         }}>
-           <div style={{ position:'absolute', top:0, left:0, width:8, height:8, borderTop:'1px solid rgba(253,251,247,0.4)', borderLeft:'1px solid rgba(253,251,247,0.4)' }} />
-           <div style={{ position:'absolute', bottom:0, left:0, width:8, height:8, borderBottom:'1px solid rgba(253,251,247,0.4)', borderLeft:'1px solid rgba(253,251,247,0.4)' }} />
-           <div style={{ position:'absolute', top:0, right:0, width:8, height:8, borderTop:'1px solid rgba(253,251,247,0.4)', borderRight:'1px solid rgba(253,251,247,0.4)' }} />
-           <div style={{ position:'absolute', bottom:0, right:0, width:8, height:8, borderBottom:'1px solid rgba(253,251,247,0.4)', borderRight:'1px solid rgba(253,251,247,0.4)' }} />
-           <span style={{ fontSize: '1.2rem', color: 'rgba(253,251,247,0.3)' }}>✦</span>
+          {/* Corner brackets */}
+          <div style={{ position: 'absolute', top: 0, left: 0, width: 6, height: 6, borderTop: '1px solid #7a6a60', borderLeft: '1px solid #7a6a60' }} />
+          <div style={{ position: 'absolute', top: 0, right: 0, width: 6, height: 6, borderTop: '1px solid #7a6a60', borderRight: '1px solid #7a6a60' }} />
+          <div style={{ position: 'absolute', bottom: 0, left: 0, width: 6, height: 6, borderBottom: '1px solid #7a6a60', borderLeft: '1px solid #7a6a60' }} />
+          <div style={{ position: 'absolute', bottom: 0, right: 0, width: 6, height: 6, borderBottom: '1px solid #7a6a60', borderRight: '1px solid #7a6a60' }} />
+          {/* Star/Crosshair */}
+          <span style={{ fontSize: '1rem', color: hovered ? 'rgba(220,38,38,0.8)' : '#7a6a60', transition: 'color 0.25s ease' }}>✻</span>
         </div>
       </div>
     </div>
@@ -150,46 +138,32 @@ export default function Testimonials() {
   return (
     <div id="testimonials" className="section-wrap" style={{ position: 'relative' }}>
       <TopoBackground variant="center-wide" />
-      <div className="section" style={{ position: 'relative', zIndex: 1, padding: '80px 28px' }}>
-        
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20 }}>
-          <span style={{ ...mono, fontSize: '0.65rem', color: '#a39185', textTransform: 'uppercase', letterSpacing: '0.1em' }}>TESTIMONIALS</span>
-          <div style={{ flex: 1, height: 1, background: 'rgba(253,251,247,0.1)' }} />
-        </div>
-
+      <div className="section" style={{ position: 'relative', zIndex: 1 }}>
+        <span className="section-label">TESTIMONIALS</span>
         <h2 style={{ 
           fontFamily: 'Inter, sans-serif', 
           fontSize: 'clamp(2rem, 4vw, 3rem)', 
-          fontWeight: 500, 
+          fontWeight: 600, 
           color: '#fdfbf7', 
-          letterSpacing: '-0.02em', 
+          letterSpacing: '-0.03em', 
           marginBottom: 16,
           lineHeight: 1.1
         }}>
-          What colleagues say<br />about my work.
+          We protect the teams<br />building tomorrow
         </h2>
-
-        <p style={{ ...mono, fontSize: '0.8rem', color: '#fdfbf7', lineHeight: 1.6, marginBottom: 50 }}>
-          When you're shipping the future, you don't get second chances.<br/>
-          <span style={{ color: '#a39185' }}>Here's what the people I've worked alongside say.</span>
+        <p style={{ ...mono, fontSize: '0.8rem', color: '#a39185', lineHeight: 1.7, marginBottom: 60, maxWidth: 640 }}>
+          When you're shipping the future, you don't get second chances. Here's why ambitious engineering teams trust us.
         </p>
 
+        {/* 3-col card grid */}
         <div
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 32 }}
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}
           className="testi-grid"
         >
-          {TESTIMONIALS.slice(0, 2).map(t => (
+          {TESTIMONIALS.map(t => (
             <TestiCard key={t.name} t={t} />
           ))}
         </div>
-        
-        {/* Render 3rd card optionally or centered below */}
-        {TESTIMONIALS.length > 2 && (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 32, marginTop: 32 }} className="testi-grid">
-            <TestiCard key={TESTIMONIALS[2].name} t={TESTIMONIALS[2]} />
-          </div>
-        )}
-
       </div>
 
       <style>{`
