@@ -34,13 +34,15 @@ export default function Contact() {
                     {item.label}
                   </div>
                   {item.href ? (
-                    <a href={item.href} style={{ ...mono, fontSize: '0.82rem', color: '#71717a', transition: 'color 0.15s', cursor: 'none' }}
+                    <a href={item.href} 
+                      className="contact-info-link"
+                      style={{ ...mono, fontSize: '0.82rem', transition: 'color 0.15s', cursor: 'none' }}
                       onMouseEnter={e => (e.currentTarget.style.color = '#fdfbf7')}
-                      onMouseLeave={e => (e.currentTarget.style.color = '#71717a')}>
+                      onMouseLeave={e => (e.currentTarget.style.color = '')}>
                       {item.val}
                     </a>
                   ) : (
-                    <span style={{ ...mono, fontSize: '0.82rem', color: '#71717a' }}>{item.val}</span>
+                    <span className="contact-info-link" style={{ ...mono, fontSize: '0.82rem' }}>{item.val}</span>
                   )}
                 </div>
               ))}
@@ -49,9 +51,10 @@ export default function Contact() {
               <div style={{ marginTop: 12, display: 'flex', gap: 16 }}>
                 {[['[ GITHUB ]','https://github.com/ayuhzkishan'],['[ LINKEDIN ]','#'],['[ TWITTER ]','#']].map(([label, href]) => (
                   <a key={label} href={href} target="_blank" rel="noreferrer"
-                    style={{ ...mono, fontSize: '0.65rem', color: '#27272a', transition: 'color 0.15s', cursor: 'none' }}
+                    className="footer-link"
+                    style={{ ...mono, fontSize: '0.65rem', transition: 'color 0.15s', cursor: 'none' }}
                     onMouseEnter={e => (e.currentTarget.style.color = '#a1a1aa')}
-                    onMouseLeave={e => (e.currentTarget.style.color = '#27272a')}>
+                    onMouseLeave={e => (e.currentTarget.style.color = '')}>
                     {label}
                   </a>
                 ))}

@@ -154,7 +154,7 @@ function DiagRow({ label, value, label2, value2 }: { label: string; value: strin
   );
 }
 
-const linkStyle: React.CSSProperties = { ...mono, fontSize: '0.72rem', color: '#3f3f46', transition: 'color 0.15s', cursor: 'none', display: 'block', marginBottom: 10 };
+const linkStyle: React.CSSProperties = { ...mono, fontSize: '0.72rem', transition: 'color 0.15s', cursor: 'none', display: 'block', marginBottom: 10 };
 
 export default function Footer() {
   const diag = useDiagnostics();
@@ -170,7 +170,10 @@ export default function Footer() {
           <div style={{ background: '#060303', padding: '40px 36px' }}>
             {/* About blurb */}
             <div style={{ ...techMono, fontSize: '0.55rem', color: '#4a3a35', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>ABOUT</div>
-            <p style={{ ...mono, fontSize: '0.72rem', color: '#7a6a60', lineHeight: 1.85, marginBottom: 36, maxWidth: 460 }}>
+            <p 
+              className="footer-about-text"
+              style={{ ...mono, fontSize: '0.72rem', lineHeight: 1.85, marginBottom: 36, maxWidth: 460 }}
+            >
               Ayush Kishan is a security-first engineer specializing in DevSecOps pipelines, cloud infrastructure hardening, and Android development. Building resilient systems from Sambalpur, India.
             </p>
 
@@ -185,9 +188,10 @@ export default function Footer() {
                       href={link.h}
                       target={'ext' in link && link.ext ? '_blank' : undefined}
                       rel={'ext' in link && link.ext ? 'noreferrer' : undefined}
+                      className="footer-link"
                       style={linkStyle}
                       onMouseEnter={e => (e.currentTarget.style.color = '#fdfbf7')}
-                      onMouseLeave={e => (e.currentTarget.style.color = '#3f3f46')}
+                      onMouseLeave={e => (e.currentTarget.style.color = '')}
                     >
                       {link.l}
                     </a>

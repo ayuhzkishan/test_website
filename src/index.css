@@ -528,3 +528,23 @@ h1, h2, h3, h4, h5 {
 @media (max-width: 640px) {
   .hero-headline { font-size: clamp(2.6rem, 14vw, 4rem); }
 }
+/* ─── Mobile Visibility Fixes ────────────────────── */
+.footer-link {
+  color: #3f3f46;
+  transition: color 0.15s;
+}
+.footer-about-text {
+  color: #7a6a60;
+}
+
+@media (max-width: 900px) {
+  .footer-link {
+    color: #a39185 !important; /* Brighter on mobile */
+  }
+  .footer-about-text {
+    color: #a39185 !important; /* Brighter on mobile */
+  }
+  .contact-info-link {
+    color: #a39185 !important; /* Brighter on mobile */
+  }
+}
