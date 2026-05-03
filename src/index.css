@@ -342,6 +342,11 @@ h1, h2, h3, h4, h5 {
   margin: 0 auto;
   padding: 100px 28px;
 }
+@media (max-width: 640px) {
+  .section {
+    padding: 60px 20px;
+  }
+}
 .section-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem; /* Increased font size */

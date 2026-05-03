@@ -283,7 +283,7 @@ export default function Advisories() {
             </p>
 
             {/* Data Table */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 16, marginTop: 24, marginBottom: 16 }}>
+            <div className="adv-meta-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 16, marginTop: 24, marginBottom: 16 }}>
               <div>
                 <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.6rem', color: '#a39185', marginBottom: 6 }}>CATEGORY</div>
                 <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: '#fdfbf7' }}>{activeTool.category}</div>
@@ -318,6 +318,13 @@ export default function Advisories() {
           </div>{/* end fade wrapper */}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .two-col { grid-template-columns: 1fr !important; }
+          .adv-meta-grid { grid-template-columns: 1fr 1fr !important; }
+        }
+      `}</style>
     </div>
   );
 }

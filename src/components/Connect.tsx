@@ -196,7 +196,7 @@ export default function Connect() {
         }
         @media (max-width: 900px) {
           .connect-layout { grid-template-columns: 1fr !important; }
-          .v-scroll-track { animation: none; flex-direction: row; overflow-x: auto; }
+          .v-scroll-track { animation: none; flex-direction: row; overflow-x: auto; position: relative !important; }
           .social-box { min-width: 260px; height: 100px !important; }
         }
       `}</style>
