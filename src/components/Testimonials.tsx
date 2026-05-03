@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import TopoBackground from './TopoBackground';
 import anurag  from '../assets/images/anurag.jpeg';
 import pratyush from '../assets/images/Pratyush.jpeg';
@@ -29,6 +29,38 @@ const mono: React.CSSProperties = { fontFamily: 'JetBrains Mono, monospace' };
 
 function TestiCard({ t }: { t: typeof TESTIMONIALS[0] }) {
   const [hovered, setHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 900);
+    checkMobile(); // Check immediately
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.85 } // Triggers when 85% of the card is in the viewport
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current);
+      }
+    };
+  }, []);
+
+  // Use scroll intersection on mobile, mouse hover on desktop
+  const isActive = isMobile ? isVisible : hovered;
 
   // Split quote to mimic screenshot typography
   const splitIndex = t.quote.indexOf('. ');
@@ -37,15 +69,16 @@ function TestiCard({ t }: { t: typeof TESTIMONIALS[0] }) {
 
   return (
     <div
+      ref={cardRef}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        background: hovered ? '#0d0505' : 'transparent',
+        background: isActive ? '#0d0505' : 'transparent',
         padding: '28px 32px',
         position: 'relative',
-        transition: 'background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease',
-        border: hovered ? '1px solid rgba(220,38,38,0.35)' : '1px solid rgba(253,251,247,0.1)',
-        boxShadow: hovered ? 'inset 0 0 40px rgba(220,38,38,0.04)' : 'none',
+        transition: 'background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease',
+        border: isActive ? '1px solid rgba(220,38,38,0.35)' : '1px solid rgba(253,251,247,0.1)',
+        boxShadow: isActive ? 'inset 0 0 40px rgba(220,38,38,0.04)' : 'none',
         cursor: 'none',
         display: 'flex',
         flexDirection: 'column',
@@ -57,15 +90,15 @@ function TestiCard({ t }: { t: typeof TESTIMONIALS[0] }) {
         {/* Top-left quote mark */}
         <div style={{
           fontFamily: 'Inter, sans-serif', fontSize: '2rem', fontWeight: 900,
-          color: hovered ? 'rgba(220,38,38,0.2)' : 'rgba(253,251,247,0.06)',
-          lineHeight: 1, marginBottom: 8, transition: 'color 0.25s ease',
+          color: isActive ? 'rgba(220,38,38,0.2)' : 'rgba(253,251,247,0.06)',
+          lineHeight: 1, marginBottom: 8, transition: 'color 0.4s ease',
         }}>“</div>
 
         {/* Primary Quote */}
         <p style={{
           fontFamily: 'Inter, sans-serif', fontSize: '1rem', fontWeight: 500,
-          color: hovered ? '#fdfbf7' : '#eaddc5', lineHeight: 1.5,
-          letterSpacing: '-0.02em', marginBottom: 12, transition: 'color 0.25s ease',
+          color: isActive ? '#fdfbf7' : '#eaddc5', lineHeight: 1.5,
+          letterSpacing: '-0.02em', marginBottom: 12, transition: 'color 0.4s ease',
         }}>
           {part1}
         </p>
@@ -73,8 +106,8 @@ function TestiCard({ t }: { t: typeof TESTIMONIALS[0] }) {
         {/* Secondary Quote */}
         {part2 && (
           <p style={{
-            ...mono, fontSize: '0.65rem', color: hovered ? '#a39185' : '#7a6a60',
-            lineHeight: 1.7, marginBottom: 16, transition: 'color 0.25s ease',
+            ...mono, fontSize: '0.65rem', color: isActive ? '#a39185' : '#7a6a60',
+            lineHeight: 1.7, marginBottom: 16, transition: 'color 0.4s ease',
           }}>
             {part2}
           </p>
@@ -83,8 +116,8 @@ function TestiCard({ t }: { t: typeof TESTIMONIALS[0] }) {
         {/* Bottom-right quote mark */}
         <div style={{
           fontFamily: 'Inter, sans-serif', fontSize: '2rem', fontWeight: 900,
-          color: hovered ? 'rgba(220,38,38,0.2)' : 'rgba(253,251,247,0.06)',
-          lineHeight: 1, textAlign: 'right', transition: 'color 0.25s ease',
+          color: isActive ? 'rgba(220,38,38,0.2)' : 'rgba(253,251,247,0.06)',
+          lineHeight: 1, textAlign: 'right', transition: 'color 0.4s ease',
         }}>”</div>
       </div>
 
@@ -98,19 +131,19 @@ function TestiCard({ t }: { t: typeof TESTIMONIALS[0] }) {
             src={t.img} alt={t.name}
             style={{
               width: 38, height: 38, objectFit: 'cover',
-              filter: hovered ? 'grayscale(0%) brightness(0.9)' : 'grayscale(100%) brightness(0.6)',
-              border: hovered ? '1px solid rgba(220,38,38,0.4)' : '1px solid transparent',
-              transition: 'filter 0.35s ease, border-color 0.25s ease',
+              filter: isActive ? 'grayscale(0%) brightness(0.9)' : 'grayscale(100%) brightness(0.6)',
+              border: isActive ? '1px solid rgba(220,38,38,0.4)' : '1px solid transparent',
+              transition: 'filter 0.5s ease, border-color 0.4s ease',
             }}
           />
           <div>
             <div style={{
               fontFamily: 'Inter, sans-serif', fontWeight: 600, fontSize: '0.8rem',
-              color: hovered ? '#fdfbf7' : '#a39185', transition: 'color 0.25s ease',
+              color: isActive ? '#fdfbf7' : '#a39185', transition: 'color 0.4s ease',
             }}>{t.name}</div>
             <div style={{
-              ...mono, fontSize: '0.55rem', color: hovered ? 'rgba(220,38,38,0.7)' : '#5a4a45',
-              marginTop: 2, transition: 'color 0.25s ease',
+              ...mono, fontSize: '0.55rem', color: isActive ? 'rgba(220,38,38,0.7)' : '#5a4a45',
+              marginTop: 2, transition: 'color 0.4s ease',
             }}>{t.role}</div>
           </div>
         </div>
@@ -119,7 +152,7 @@ function TestiCard({ t }: { t: typeof TESTIMONIALS[0] }) {
         <div style={{
           width: 32, height: 32, position: 'relative',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          opacity: hovered ? 1 : 0.4, transition: 'opacity 0.25s ease'
+          opacity: isActive ? 1 : 0.4, transition: 'opacity 0.4s ease'
         }}>
           {/* Corner brackets */}
           <div style={{ position: 'absolute', top: 0, left: 0, width: 6, height: 6, borderTop: '1px solid #7a6a60', borderLeft: '1px solid #7a6a60' }} />
@@ -127,7 +160,7 @@ function TestiCard({ t }: { t: typeof TESTIMONIALS[0] }) {
           <div style={{ position: 'absolute', bottom: 0, left: 0, width: 6, height: 6, borderBottom: '1px solid #7a6a60', borderLeft: '1px solid #7a6a60' }} />
           <div style={{ position: 'absolute', bottom: 0, right: 0, width: 6, height: 6, borderBottom: '1px solid #7a6a60', borderRight: '1px solid #7a6a60' }} />
           {/* Star/Crosshair */}
-          <span style={{ fontSize: '1rem', color: hovered ? 'rgba(220,38,38,0.8)' : '#7a6a60', transition: 'color 0.25s ease' }}>✻</span>
+          <span style={{ fontSize: '1rem', color: isActive ? 'rgba(220,38,38,0.8)' : '#7a6a60', transition: 'color 0.4s ease' }}>✻</span>
         </div>
       </div>
     </div>

@@ -1,8 +1,30 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import MyImage from '../assets/images/cool.jpg';
 import TopoBackground from './TopoBackground';
 
 export default function About() {
+  const [isVisible, setIsVisible] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.9} // Triggers when 50% of the image is in the viewport
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => {
+      if (imgRef.current) {
+        observer.unobserve(imgRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className="section-wrap" id="about" style={{ position: 'relative' }}>
       <TopoBackground variant="top-right" />
@@ -48,6 +70,7 @@ export default function About() {
           {/* ── Right: photo with terminal overlay ── */}
           <div style={{ position: 'relative', width: '100%' }}>
             <img
+              ref={imgRef}
               src={MyImage}
               alt="Ayush Kishan"
               style={{
@@ -56,11 +79,9 @@ export default function About() {
                 display: 'block',
                 borderRadius: 2,
                 border: '1px solid rgba(255,255,255,0.08)',
-                filter: 'grayscale(100%) brightness(0.85)',
-                transition: 'filter 0.4s ease',
+                filter: isVisible ? 'grayscale(20%) brightness(1)' : 'grayscale(100%) brightness(0.85)',
+                transition: 'filter 0.8s ease-out',
               }}
-              onMouseEnter={e => (e.currentTarget.style.filter = 'grayscale(20%) brightness(1)')}
-              onMouseLeave={e => (e.currentTarget.style.filter = 'grayscale(100%) brightness(0.85)')}
             />
             {/* Details below photo */}
             <div style={{
