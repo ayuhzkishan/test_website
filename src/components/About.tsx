@@ -62,23 +62,20 @@ export default function About() {
               onMouseEnter={e => (e.currentTarget.style.filter = 'grayscale(20%) brightness(1)')}
               onMouseLeave={e => (e.currentTarget.style.filter = 'grayscale(100%) brightness(0.85)')}
             />
-            {/* Terminal metadata overlay */}
+            {/* Details below photo */}
             <div style={{
-              position: 'absolute',
-              bottom: 12, left: 12,
-              background: 'rgba(0,0,0,0.88)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              padding: '10px 14px',
+              marginTop: 20,
+              padding: '12px 4px',
               fontFamily: 'JetBrains Mono, monospace',
-              fontSize: '0.6rem',
-              color: '#7a6a60',
+              fontSize: '0.72rem',
+              color: '#a39185',
               lineHeight: 2,
-              borderRadius: 1,
+              fontWeight: 500,
             }}>
-              <div>NAME: &nbsp;Ayush Kishan</div>
-              <div>LOC: &nbsp;&nbsp;Sambalpur, Odisha IN</div>
-              <div>ROLE: &nbsp;Dev · DevOps · Security</div>
-              <div>STATUS: <span className="status-dot" style={{ marginRight: 4 }} /> AVAILABLE</div>
+              <div>NAME: &nbsp;<span style={{ color: '#fdfbf7', fontWeight: 600 }}>Ayush Kishan</span></div>
+              <div>LOC: &nbsp;&nbsp;<span style={{ color: '#fdfbf7', fontWeight: 600 }}>Sambalpur, Odisha IN</span></div>
+              <div>ROLE: &nbsp;<span style={{ color: '#fdfbf7', fontWeight: 600 }}>Dev · DevOps · Security</span></div>
+              <div>STATUS: <span className="status-dot" style={{ margin: '0 6px 0 2px' }} /> <span style={{ color: '#fdfbf7', fontWeight: 600 }}>AVAILABLE</span></div>
             </div>
           </div>
         </div>
