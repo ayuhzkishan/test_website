@@ -43,8 +43,17 @@ const PROJECTS = [
 const mono: React.CSSProperties = { fontFamily: 'JetBrains Mono, monospace' };
 
 function ProjectCard({ p }: { p: typeof PROJECTS[0] }) {
+  const [hovered, setHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 900);
+    checkMobile(); // Check immediately
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -65,8 +74,23 @@ function ProjectCard({ p }: { p: typeof PROJECTS[0] }) {
     };
   }, []);
 
+  const isActive = isMobile ? isVisible : hovered;
+
   return (
-    <div ref={cardRef} className="proj-card" style={{ background: '#060303', overflow: 'hidden' }}>
+    <div 
+      ref={cardRef} 
+      className="proj-card" 
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ 
+        background: '#060303', 
+        overflow: 'hidden',
+        borderRadius: 2,
+        border: '1px solid',
+        borderColor: isActive ? 'rgba(253,251,247,0.25)' : 'rgba(255,255,255,0.06)',
+        transition: 'border-color 0.4s ease'
+      }}
+    >
       {/* Image */}
       <div style={{ position: 'relative', overflow: 'hidden' }}>
         <img 
@@ -74,9 +98,9 @@ function ProjectCard({ p }: { p: typeof PROJECTS[0] }) {
           alt={p.title} 
           className="proj-img" 
           style={{
-            filter: isVisible ? 'grayscale(30%) brightness(0.65)' : 'grayscale(100%) brightness(0.45)',
-            transform: isVisible ? 'scale(1.03)' : 'scale(1)',
-            transition: 'filter 0.8s ease-out, transform 0.8s ease-out'
+            filter: isActive ? 'grayscale(30%) brightness(0.65)' : 'grayscale(100%) brightness(0.45)',
+            transform: isActive ? 'scale(1.03)' : 'scale(1)',
+            transition: 'filter 0.5s ease, transform 0.5s ease'
           }}
         />
         <span style={{ position: 'absolute', top: 12, right: 12, ...mono, fontSize: '0.58rem', color: '#7a6a60', background: 'rgba(0,0,0,0.8)', padding: '3px 8px', border: '1px solid rgba(255,255,255,0.06)' }}>
@@ -85,24 +109,24 @@ function ProjectCard({ p }: { p: typeof PROJECTS[0] }) {
       </div>
 
       {/* Body */}
-      <div style={{ padding: '24px 26px' }}>
-        <div style={{ ...mono, fontSize: '0.6rem', color: '#7a6a60', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: 8 }}>
+      <div style={{ padding: '28px 32px' }}>
+        <div style={{ ...mono, fontSize: '0.6rem', color: isActive ? '#a39185' : '#7a6a60', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: 12, transition: 'color 0.4s ease' }}>
           {p.category}
         </div>
-        <h3 style={{ fontFamily: 'Inter, sans-serif', fontSize: '1.15rem', fontWeight: 700, color: '#fdfbf7', letterSpacing: '-0.02em', marginBottom: 10 }}>
+        <h3 style={{ fontFamily: 'Inter, sans-serif', fontSize: '1.2rem', fontWeight: 700, color: '#fdfbf7', letterSpacing: '-0.02em', marginBottom: 12 }}>
           {p.title}
         </h3>
-        <p style={{ ...mono, fontSize: '0.72rem', color: '#a39185', lineHeight: 1.8, marginBottom: 18 }}>
+        <p style={{ ...mono, fontSize: '0.72rem', color: '#a39185', lineHeight: 1.8, marginBottom: 20 }}>
           {p.desc}
         </p>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 18 }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 20 }}>
           {p.tags.map(t => <span key={t} className="tag" style={{ fontSize: '0.62rem' }}>{t}</span>)}
         </div>
-        <div style={{ display: 'flex', gap: 18, borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: 14 }}>
+        <div style={{ display: 'flex', gap: 18, borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: 16 }}>
           {[['[ GITHUB ]', p.github], ['[ LIVE DEMO ↗ ]', p.live]].map(([label, href]) => (
-            <a key={label as string} href={href as string} style={{ ...mono, fontSize: '0.65rem', color: '#7a6a60', transition: 'color 0.15s', cursor: 'none' }}
+            <a key={label as string} href={href as string} style={{ ...mono, fontSize: '0.65rem', color: isActive ? '#fdfbf7' : '#7a6a60', transition: 'color 0.4s ease', cursor: 'none' }}
               onMouseEnter={e => (e.currentTarget.style.color = '#a39185')}
-              onMouseLeave={e => (e.currentTarget.style.color = '#7a6a60')}>
+              onMouseLeave={e => (e.currentTarget.style.color = isActive ? '#fdfbf7' : '#7a6a60')}>
               {label}
             </a>
           ))}
@@ -127,8 +151,8 @@ export default function Portfolio() {
           <a href="#contact" className="btn btn-outline" style={{ cursor: 'none', fontSize: '0.7rem' }}>View All ↗</a>
         </div>
 
-        {/* 2×2 grid with 1px gap lines (Hacktron bento style) */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1, background: 'rgba(255,255,255,0.06)' }} className="proj-grid">
+        {/* 2×2 grid with proper gaps */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, background: 'transparent' }} className="proj-grid">
           {PROJECTS.map(p => (
             <ProjectCard key={p.id} p={p} />
           ))}
